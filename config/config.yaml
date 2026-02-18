@@ -1,0 +1,100 @@
+# 4D-Paper System Configuration
+
+# Service Configuration
+service:
+  name: "4D-Paper API"
+  version: "1.0.0"
+  env: "development"
+  debug: true
+  port: 8000
+  host: "0.0.0.0"
+
+# Security Configuration
+security:
+  secret_key: "your-secret-key-change-in-production"
+  encryption_master_key: "your-encryption-key-change-in-production"
+  jwt:
+    secret: "your-jwt-secret"
+    algorithm: "HS256"
+    access_token_expire_minutes: 30
+  password:
+    min_length: 8
+    require_uppercase: true
+    require_lowercase: true
+    require_digit: true
+    require_special: true
+
+# Storage Configuration
+storage:
+  base_path: "./storage"
+  tmp_dir: "./tmp"
+  four_d_data: "./storage/four_d_data"
+  papers: "./storage/papers"
+  timestamps: "./storage/timestamps"
+  blockchain: "./storage/blockchain"
+  keys: "./storage/keys"
+
+# Data Processing Configuration
+data_processing:
+  max_file_size: 104857600  # 100MB
+  allowed_extensions:
+    - ".csv"
+    - ".xlsx"
+    - ".xls"
+    - ".npy"
+    - ".npz"
+    - ".h5"
+  chunk_size: 1048576  # 1MB
+
+# Paper Generation Configuration
+paper_generation:
+  default_template: "default"
+  supported_formats:
+    - "md"
+    - "pdf"
+    - "docx"
+  max_version_history: 1000
+
+# Monitoring Configuration
+monitoring:
+  enabled: true
+  interval: 60  # seconds
+  log_level: "INFO"
+
+# Notification Configuration
+notification:
+  enabled: true
+  email:
+    enabled: false
+    smtp_server: "smtp.example.com"
+    smtp_port: 587
+    use_tls: true
+  webhook:
+    enabled: false
+    url: ""
+
+# Internationalization Configuration
+i18n:
+  default_language: "en"
+  available_languages:
+    - "en"
+    - "zh"
+    - "fr"
+    - "es"
+    - "de"
+    - "ja"
+    - "ko"
+    - "ru"
+  fallback_to_default: true
+
+# Deduplication Configuration
+deduplication:
+  enabled: true
+  schedule:
+    enabled: true
+    interval: "daily"
+    time: "00:00"
+  notification:
+    enabled: true
+    email: false
+    webhook: false
